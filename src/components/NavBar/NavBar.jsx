@@ -31,6 +31,16 @@ const NavBar = () => {
             Favorite {favoriteCount > 0 && `(${favoriteCount})`}
           </Link>
         </li>
+        <li className="nav-item">
+          <Link to="/login" className="nav-link fs-5 fw-bold text-white ">
+            Login
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link to="/register" className="nav-link fs-5 fw-bold text-white">
+            Register
+          </Link>
+        </li>
       </ul>
     </div>
   );
