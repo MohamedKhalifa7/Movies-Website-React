@@ -1,0 +1,19 @@
+.nav-link {
+  cursor: pointer;
+  padding: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.container-fluid {
+  background-color: black;
+}
+
+.nav-link.active-link {
+  background-color: white;
+  color: black; 
+  border-radius: 5px;
+}
+
+.nav-link:hover {
+  background-color: red;
+}
