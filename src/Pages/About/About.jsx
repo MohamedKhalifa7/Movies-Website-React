@@ -1,43 +1,78 @@
-import "./About.css";
+import React from "react";
+import {
+  Box,
+  Typography,
+  CardActions,
+  Button,
+  
+} from "@mui/material";
 
 const About = () => {
+  const containerStyle = {
+    backgroundImage: `url("s1.jpg")`,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+    height: "100vh",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    textAlign: "center",
+    padding: "20px",
+    color: "white",
+  };
+
   return (
-    <div className="container mt-5 about">
-      <div className="card">
-        <div className="card-body text-center">
-          <h3 className="card-title text-bg-secondary ">About me</h3>
-          <ul className="list-group list-group-flush">
-            <li className="list-group-item ">
-              <strong>Name:</strong> Mohamed Ahmed
-            </li>
-            <li className="list-group-item">
-              <strong>Number:</strong> 01100084447
-            </li>
-            <li className="list-group-item">
-              <strong>Email:</strong> mohamedkhalifa4422@gmail.com
-            </li>
-            <li className="list-group-item">
-              <a
-                href="https://web.whatsapp.com/"
-                target="_blank"
-                className="btn btn-success"
-              >
-                WhatsApp
-              </a>
-            </li>
-            <li className="list-group-item">
-              <a
-                href="mailto:mohamedkhalifa4422@gmail.com"
-                target="_blank"
-                className="btn btn-primary"
-              >
-                Email
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
+    <Box sx={containerStyle}>
+      <Box
+        sx={{
+          background: "rgba(0, 0, 0, 0.7)",
+          padding: "30px",
+          borderRadius: "10px",
+          maxWidth: "800px",
+        }}
+      >
+        <Typography
+          variant="h1"
+          sx={{ fontSize: "2.5rem", marginBottom: "20px" }}
+        >
+          Welcome to MovieApp
+        </Typography>
+
+        <Typography
+          variant="h3"
+          sx={{ color: "chocolate", marginBottom: "20px" }}
+        >
+          Contact
+        </Typography>
+
+        <CardActions
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            flexDirection: "column",
+            gap: "10px",
+          }}
+        >
+          <Button
+            href="https://web.whatsapp.com/"
+            target="_blank"
+            variant="contained"
+            color="success"
+          >
+            WhatsApp
+          </Button>
+          <Button
+            href="mailto:mohamedkhalifa4422@gmail.com"
+            target="_blank"
+            variant="contained"
+            color="primary"
+          >
+            Email
+          </Button>
+        </CardActions>
+      </Box>
+    </Box>
   );
 };
 

@@ -2,6 +2,17 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleFavorite } from "../../Redux/store";
+import {
+  Card,
+  CardMedia,
+  CardContent,
+  Typography,
+  IconButton,
+  Button,
+  Box,
+} from "@mui/material";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 
 const Movie = ({ id, title, poster_path }) => {
   const dispatch = useDispatch();
@@ -13,63 +24,60 @@ const Movie = ({ id, title, poster_path }) => {
   };
 
   return (
-    <div
-      style={{
-        flex: "1 0 18%",
+    <Card
+      sx={{
+        flex: "1 0 15%",
+        margin: "20px",
         display: "flex",
         flexDirection: "column",
-        alignItems: "center",
-        marginBottom: "20px",
-        marginLeft:"20px",
-        marginRight:"20px",
-        marginTop:"20px",
-
+        position: "relative",
+        backgroundColor: "black",
       }}
     >
-      <div
-        style={{
-          backgroundColor: "blue",
-          fontSize: "25px",
-          color: "white",
-          textAlign: "center",
-          width: "100%",
-          boxSizing: "border-box",
-          fontWeight: "bold",
+      <Box
+        sx={{
+          position: "absolute",
+          top: "10px",
+          right: "10px",
+          zIndex: 1,
         }}
       >
-        {title}
-      </div>
-      <div style={{ position: "relative", width: "100%" }}>
-        <img
-          src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
-          alt={title}
-          style={{ width: "100%", height: "auto" }}
-        />
-        <button
-          onClick={handleFavoriteClick}
-          style={{
-            position: "absolute",
-            top: "10px",
-            right: "10px",
-            background: "none",
-            border: "none",
-            cursor: "pointer",
-            fontSize: "24px",
-            backgroundColor: "blue",
-            borderRadius: "50%",
-            color: isFavorite ? "red" : "gray",
+        <IconButton onClick={handleFavoriteClick} sx={{ color: "red" }}>
+          {isFavorite ? (
+            <FavoriteIcon style={{ color: "red" }} />
+          ) : (
+            <FavoriteBorderIcon style={{ color: "gray" }} />
+          )}
+        </IconButton>
+      </Box>
+      <CardMedia
+        component="img"
+        // height="100"
+
+        image={`https://image.tmdb.org/t/p/w500/${poster_path}`}
+        alt={title}
+        sx={{ borderRadius: "10px" }}
+      />
+      <CardContent sx={{ backgroundColor: "black" }}>
+        <Typography
+          variant="h6"
+          component="div"
+          sx={{
+            fontWeight: "bold",
+            textAlign: "center",
+            marginBottom: "10px",
+            color: "white",
           }}
         >
-          {isFavorite ? "❤️" : "🤍"}
-        </button>
-      </div>
-      <Link
-        to={`/movie/${id}`}
-        style={{ marginTop: "10px", padding: "10px", fontSize: "16px" }}
-      >
-        <button className="bg-danger text-white">View Details</button>
-      </Link>
-    </div>
+          {title}
+        </Typography>
+        <Link to={`/movie/${id}`} sx={{ textDecoration: "none" }}>
+          <Button variant="contained" color="secondary" fullWidth>
+            View Details
+          </Button>
+        </Link>
+      </CardContent>
+    </Card>
   );
 };
 

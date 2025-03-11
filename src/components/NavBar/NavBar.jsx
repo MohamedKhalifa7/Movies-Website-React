@@ -1,48 +1,68 @@
-import { Link } from "react-router";
-import "./NavBar.css";
+import React from "react";
+import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { AppBar, Toolbar, Typography, Button, Box } from "@mui/material";
 
 const NavBar = () => {
   const favoriteCount = useSelector((state) => state.favoriteMovies.length);
 
   return (
-    <div
-      style={{ width: "100%", margin: 0, padding: 0 }}
-      className="container-fluid p-1 d-flex justify-content-start"
-    >
-      <ul className="nav">
-        <li className="nav-item">
-          <Link to="/" className="nav-link fs-5 fw-bold text-white">
+    <AppBar position="static" sx={{ backgroundColor: "black" }}>
+      <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
+        <Typography variant="h6" component="div" sx={{ fontWeight: "bold" }}>
+          MovieApp
+        </Typography>
+
+        <Box sx={{ display: "flex", gap: 2 }}>
+          <Button
+            component={Link}
+            to="/"
+            sx={{ color: "white", fontWeight: "bold" }}
+          >
             Home
-          </Link>
-        </li>
-        <li className="nav-item">
-          <Link to="/about" className="nav-link fs-5 fw-bold text-white">
+          </Button>
+          <Button
+            component={Link}
+            to="/about"
+            sx={{ color: "white", fontWeight: "bold" }}
+          >
             About
-          </Link>
-        </li>
-        <li className="nav-item">
-          <Link to="/profile" className="nav-link fs-5 fw-bold text-white">
+          </Button>
+          <Button
+            component={Link}
+            to="/profile"
+            sx={{ color: "white", fontWeight: "bold" }}
+          >
             Profile
-          </Link>
-        </li>
-        <li className="nav-item">
-          <Link to="/favorite" className="nav-link fs-5 fw-bold text-white">
+          </Button>
+          <Button
+            component={Link}
+            to="/favorite"
+            sx={{ color: "white", fontWeight: "bold" }}
+          >
             Favorite {favoriteCount > 0 && `(${favoriteCount})`}
-          </Link>
-        </li>
-        <li className="nav-item">
-          <Link to="/login" className="nav-link fs-5 fw-bold text-white ">
+          </Button>
+          <Button
+            component={Link}
+            to="/login"
+            sx={{ color: "white", fontWeight: "bold", backgroundColor: "blue" }}
+          >
             Login
-          </Link>
-        </li>
-        <li className="nav-item">
-          <Link to="/register" className="nav-link fs-5 fw-bold text-white">
+          </Button>
+          <Button
+            component={Link}
+            to="/register"
+            sx={{
+              color: "white",
+              fontWeight: "bold",
+              backgroundColor: "green",
+            }}
+          >
             Register
-          </Link>
-        </li>
-      </ul>
-    </div>
+          </Button>
+        </Box>
+      </Toolbar>
+    </AppBar>
   );
 };
 

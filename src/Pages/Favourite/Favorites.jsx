@@ -1,6 +1,16 @@
 import { toggleFavorite } from "../../Redux/store";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import {
+  Card,
+  CardMedia,
+  CardContent,
+  Typography,
+  IconButton,
+  Button,
+  Box,
+} from "@mui/material";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 
 const Favorites = () => {
   const dispatch = useDispatch();
@@ -12,69 +22,73 @@ const Favorites = () => {
 
   if (favorites.length === 0) {
     return (
-      <div style={{ color: "white", textAlign: "center" }}>
+      <Typography variant="h6" color="white" textAlign="center">
         No favorites added yet!
-      </div>
+      </Typography>
     );
   }
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexWrap: "wrap",
-        gap: "10px",
-        justifyContent: "space-between",
+    <Box
+      sx={{
+        display: "grid",
+        gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))",
+        gap: "20px",
         backgroundColor: "black",
+        padding: "20px",
       }}
     >
       {favorites.map((movie) => (
-        <div
+        <Card
           key={movie.id}
-          style={{
-            width: "200px",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            marginBottom: "20px",
-            marginTop: "20px",
-            marginLeft: "20px",
-            marginRight: "20px",
+          sx={{
+            backgroundColor: "black",
+            position: "relative",
+            borderRadius: "10px",
           }}
         >
-          <div
-            style={{
-              backgroundColor: "blue",
-              fontSize: "20px",
-              color: "white",
-              textAlign: "center",
-              width: "100%",
-              boxSizing: "border-box",
-            }}
-          >
-            {movie.title}
-          </div>
-          <img
-            src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+          <CardMedia
+            component="img"
+            image={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
             alt={movie.title}
-            style={{ width: "100%", height: "auto" }}
+            sx={{ borderRadius: "10px" }}
           />
-          <button
+          <IconButton
             onClick={() => handleRemove(movie.id)}
-            style={{
-              backgroundColor: "red",
-              color: "white",
-              border: "none",
-              padding: "10px",
-              marginTop: "10px",
-              cursor: "pointer",
+            sx={{
+              position: "absolute",
+              top: "10px",
+              right: "10px",
+              color: "red",
             }}
           >
-            Remove from Favorites
-          </button>
-        </div>
+            <FavoriteIcon />
+          </IconButton>
+          <CardContent>
+            <Typography
+              variant="h6"
+              component="div"
+              sx={{
+                color: "white",
+                textAlign: "center",
+                fontWeight: "bold",
+                marginBottom: "10px",
+              }}
+            >
+              {movie.title}
+            </Typography>
+            <Button
+              variant="contained"
+              color="error"
+              fullWidth
+              onClick={() => handleRemove(movie.id)}
+            >
+              Remove
+            </Button>
+          </CardContent>
+        </Card>
       ))}
-    </div>
+    </Box>
   );
 };
 
