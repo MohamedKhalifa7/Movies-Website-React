@@ -11,9 +11,9 @@ import {
 const Profile = ({ userData }) => {
   return (
     <TableContainer
-      sx={{ border: 1, width: "80%", margin: "auto", marginY: 2 }}
+      sx={{ width: "80%", margin: "auto", marginY: 2 }}
     >
-      <Table sx={{ border: 3 }}>
+      <Table >
         <TableHead>
           <TableRow>
             <TableCell
